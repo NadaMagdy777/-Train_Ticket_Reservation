@@ -1,0 +1,182 @@
+#include<iostream>
+using namespace std;
+struct car
+{
+	int id;
+	bool seats[30];
+};
+void reserve(car s[],int a,int b)
+{
+	if(a>0 && b>0 && a<=10 && b<=30)
+	{
+		int x=a-1;
+		int y=b-1;
+		if(s[x].seats[y]==false)
+		{
+			s[x].seats[y]=true;
+			cout<<"the seat was reversed"<<endl;
+		}
+		else
+		{
+			cout<<"the seat is reversed"<<endl;
+		}
+	}
+}
+void canselling(car s[],int a,int b)
+{
+	if(a>0&&b>0 && a<=10 && b<=30)
+	{
+		int x=a-1;
+		int y=b-1;
+		if(s[x].seats[y]==true)
+		{
+			s[x].seats[y]=false;
+			cout<<"the Reverse canceled"<<endl;
+		}
+		else
+		{
+			cout<<"the seat is not reversed"<<endl;
+		}
+	}
+}
+int searching(car s[],int a)
+{
+	if(a>0 && a<=10 )
+	{
+		int x=a-1;
+		int count=0;
+		for(int i=0;i<30;i++)
+		{
+			if(s[x].seats[i]==false)
+			{
+				count++;
+			}
+	
+		}
+
+
+		if(count>0)
+		{
+			 return 1;
+		}
+		else
+		{
+			 return 0;
+		}
+	}
+}
+void checking(car s[],int a,int b)
+{
+	if(a>0 && b>0 && a<=10 && b<=30)
+	{
+		int x=a-1;
+		int y=b-1;
+		if(s[x].seats[y]==false)
+		{
+			cout<<"The seat is free"<<endl;
+		}
+		else
+		{
+			cout<<"The seat is not free"<<endl;
+		}
+	}
+}
+void counting(car s[],int a)
+{
+	if(a>0 && a<=10 )
+	{
+		int x=a-1;
+		int count=0;
+		for(int i=0;i<30;i++)
+		{
+			if(s[x].seats[i]==false)
+			{
+				count++;
+			}
+		}
+		cout<<"The number of free seats is :"<<count<<endl;
+	}
+}
+void showing(car s[],int a)
+{
+	if(a>0 && a<=10 )
+	{
+		int x=a-1;
+		for(int i=0;i<30;i++)
+		{
+			if(s[x].seats[i]==false)
+			{
+				cout<<"saet "<<i+1<<" "<<"is free"<<endl;
+			}
+			else
+			{
+				cout<<"seat "<<i+1<<" "<<"is not free"<<endl;
+			}
+		} 
+	}
+} 
+int main()
+{
+	car s[10];
+	for(int j=0;j<10;j++)
+	{
+		for(int i=0;i<30;i++)
+		{
+			s[j].seats[i]=false;
+		}
+	}
+	int noc,nos,num;
+         
+	do
+	{
+	cout<<"Please enter 1 to Reserve a ticket."<<endl;
+	cout<<"Please enter 2 to cancel the Reservation."<<endl;
+	cout<<"Please enter 3 to check wether a specific car has available seat or not."<<endl;
+	cout<<"Please enter 4 to check wether a specific seat is available or not."<<endl;
+	cout<<"Please enter 5 to get the number of the available seats in a specific car."<<endl;
+	cout<<"Please enter 6 to show all the seats status of a specific car."<<endl;
+	cout<<"Please enter 7 to exit from program"<<endl;
+	cin>>num;
+		if(num==1)
+		{
+			cin>>noc>>nos;
+			reserve(s,noc,nos);
+		}
+		if (num==2)
+		{
+			cin>>noc>>nos;
+			canselling(s,noc,nos);
+		}
+		if(num==3)
+		{
+			cin>>noc;
+			int z=searching(s,noc);
+			if(z==1)
+			{
+			cout<<"There have free seats"<<endl;
+			}
+			else
+			{
+			cout<<"There have no free seats"<<endl;
+			}
+
+		}
+		if(num==4)
+		{
+			cin>>noc>>nos;
+			checking(s,noc,nos);
+		}
+		if(num==5)
+		{
+			cin>>noc;
+			counting(s,noc);
+		}
+		if(num==6)
+		{
+			cin>>noc;
+			showing(s,noc);
+		}
+		
+	}while(num!=7);
+	return 0;
+}
